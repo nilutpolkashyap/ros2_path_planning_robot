@@ -1,9 +1,57 @@
 <?xml version="1.0" ?>
 <robot name="m2wr" xmlns:xacro="http://www.ros.org/wiki/xacro">
 	
-	<xacro:include filename="$(find diff_drive_robot)/urdf/materials.xacro"/>	
+		  <gazebo reference="link_chassis">
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="link_left_wheel">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="link_right_wheel">
+    <material>Gazebo/Blue</material>
+  </gazebo>
   
-	<xacro:include filename="$(find diff_drive_robot)/urdf/gazebo_plugins.xacro"/>
+  	<gazebo>
+	    <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
+	      	<legacyMode>false</legacyMode>
+	      	<alwaysOn>true</alwaysOn>
+	      	<updateRate>20</updateRate>
+	      	<leftJoint>joint_left_wheel</leftJoint>
+	      	<rightJoint>joint_right_wheel</rightJoint>
+	      	<wheelSeparation>0.3</wheelSeparation>
+	      	<wheelDiameter>0.2</wheelDiameter>
+	      	<torque>0.1</torque>
+	      	<commandTopic>cmd_vel</commandTopic>
+	      	<odometryTopic>odom</odometryTopic>
+	      	<odometryFrame>odom</odometryFrame>
+	      	<robotBaseFrame>link_chassis</robotBaseFrame>
+	    </plugin>
+  	</gazebo>
+
+	  	<material name="black">
+		<color rgba="0.0 0.0 0.0 1.0"/>
+	</material>
+	<material name="blue">
+	    <color rgba="0.203125 0.23828125 0.28515625 1.0"/>
+	  </material>
+	  <material name="green">
+	    <color rgba="0.0 0.8 0.0 1.0"/>
+	  </material>
+	  <material name="grey">
+	    <color rgba="0.2 0.2 0.2 1.0"/>
+	  </material>
+	  <material name="orange">
+	    <color rgba="1.0 0.423529411765 0.0392156862745 1.0"/>
+	  </material>
+	  <material name="brown">
+	    <color rgba="0.870588235294 0.811764705882 0.764705882353 1.0"/>
+	  </material>
+	  <material name="red">
+	    <color rgba="0.80078125 0.12890625 0.1328125 1.0"/>
+	  </material>
+	  <material name="white">
+	    <color rgba="1.0 1.0 1.0 1.0"/>
+	  </material>
 
   	<!-- Dummy link -->
   	<link name="dummy">
