@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+	<param name="robot_description" command="cat '$(find diff_drive_robot)/urdf/diff_drive_robot.xacro'"/>
+
+	<arg name="x" default="0"/>
+	<arg name="y" default="0"/>
+	<arg name="z" default="0.5"/>
+
+	<node name="diff_drive_robot_spawn" pkg ="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param robot_description -model mybot -x $(arg x) -y $(arg y) -z $(arg z)"/> 
+
+	<!-- <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find diff_drive_robot)/urdf/diff_drive_robot.xacro -urdf -param robot_description -model mybot -x $(arg x) -y $(arg y) -z $(arg z)" /> -->
+</launch>
