@@ -8,7 +8,12 @@ project(diff_drive_robot)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rospy
+  rviz
+  tf
   urdf
+  xacro
 )
 
 ## System dependencies are found with CMake's conventions
@@ -103,7 +108,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES diff_drive_robot
-#  CATKIN_DEPENDS urdf
+#  CATKIN_DEPENDS roscpp rospy rviz tf urdf xacro
 #  DEPENDS system_lib
 )
 
