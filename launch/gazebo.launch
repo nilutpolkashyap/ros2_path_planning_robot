@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<launch>
+  <param command="$(find xacro)/xacro $(find bug_robot_description)/urdf/bug_robot.xacro" name="robot_description"/>
+  <node args="-param robot_description -urdf -model bug_robot" name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+</launch>
