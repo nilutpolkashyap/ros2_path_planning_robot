@@ -140,7 +140,7 @@
             </script>
           </material>
         </visual>
-        <sensor name='Botcamera' type='camera'>
+        <!-- <sensor name='Botcamera' type='camera'>
           <update_rate>30</update_rate>
           <camera name='head'>
             <horizontal_fov>1.39626</horizontal_fov>
@@ -169,7 +169,7 @@
             <hackBaseline>0.07</hackBaseline>
           </plugin>
           <pose>-0.16 0 0.08 0 -0 3.14</pose>
-        </sensor>
+        </sensor> -->
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
@@ -1375,7 +1375,7 @@
       <model name='maze_world_0'>
         <pose>0.039716 2.47328 10.0311 0 -0 0</pose>
         <scale>1 1 1</scale>
-        <link name='link_1'>
+        <link name='topcamera'>
           <pose>0.039716 2.47328 10.0311 0 -0 0</pose>
           <velocity>0 0 -3.969 0 -0 0</velocity>
           <acceleration>0 0 -9.8 0 -0 0</acceleration>
@@ -1386,8 +1386,9 @@
         <pose>0 0 10 0 -0 0</pose>
       </light>
     </state>
+
     <model name='maze_world_0'>
-      <link name='link_1'>
+      <link name='topcamera'>
         <inertial>
           <mass>1</mass>
           <inertia>
@@ -1400,7 +1401,7 @@
           </inertia>
           <pose>0 0 0 0 -0 0</pose>
         </inertial>
-        <pose>-0 0 -1.9e-05 0 -0 0</pose>
+        <pose>-0 0 -0.9e-05 0 -0 0</pose>
         <gravity>1</gravity>
         <self_collide>0</self_collide>
         <kinematic>0</kinematic>
@@ -1484,8 +1485,48 @@
             </contact>
           </surface>
         </collision>
+
+        <sensor name='topcamera' type='camera'>
+          <pose>0 0 0 0 1.57 1.57</pose>
+          <update_rate>30</update_rate>
+          <visualize>1</visualize>
+          <camera name='head'>
+            <horizontal_fov>1.0856</horizontal_fov>
+            <image>
+              <width>1280</width>
+              <height>720</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.03</near>
+              <far>100</far>
+            </clip>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.007</stddev>
+            </noise>
+          </camera>
+          <plugin name='camera_controller' filename='libgazebo_ros_camera.so'>
+            <alwaysOn>1</alwaysOn>
+            <updateRate>0.0</updateRate>
+            <cameraName>/topcamera</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>camera_link</frameName>
+            <hackBaseline>0.07</hackBaseline>
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+          </plugin>
+        </sensor>
+
       </link>
-      <static>0</static>
+
+
+      <static>1</static>
       <allow_auto_disable>1</allow_auto_disable>
       <pose>0.039716 2.47328 10.8368 0 -0 0</pose>
     </model>
