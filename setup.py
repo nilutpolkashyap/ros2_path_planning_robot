@@ -26,6 +26,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'maze_solver = maze_bot.maze_solver:main'
         ],
     },
 )
