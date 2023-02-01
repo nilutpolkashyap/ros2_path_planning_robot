@@ -7,7 +7,7 @@ from scripts import GazeboRosPaths
 
 def generate_launch_description():
     package_share_dir = get_package_share_directory("ros2_path_planning_robot")
-    urdf_file = os.path.join(package_share_dir, "urdf", "bug_robot.urdf")
+    urdf_file = os.path.join(package_share_dir, "urdf", "bug_robot2.xacro")
     world_file = os.path.join(package_share_dir, "worlds", "maze_2.world")
 
     model_path, plugin_path, media_path = GazeboRosPaths.get_paths()

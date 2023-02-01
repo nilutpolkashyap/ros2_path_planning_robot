@@ -6,8 +6,8 @@ from launch_ros.actions import Node
 from scripts import GazeboRosPaths
 
 def generate_launch_description():
-    package_share_dir = get_package_share_directory("maze_bot")
-    urdf_file = os.path.join(package_share_dir, "urdf", "maze_bot.urdf")
+    package_share_dir = get_package_share_directory("ros2_path_planning_robot")
+    urdf_file = os.path.join(package_share_dir, "urdf", "bug_robot2.xacro")
     world_file = os.path.join(package_share_dir, "worlds", "maze_1.world")
 
     model_path, plugin_path, media_path = GazeboRosPaths.get_paths()
@@ -22,6 +22,12 @@ def generate_launch_description():
                 cmd=["gazebo","--verbose",world_file,"-s","libgazebo_ros_factory.so",],
                 output="screen",
                 additional_env=env,
+            ),
+            Node(
+                package="gazebo_ros",
+                executable="spawn_entity.py",
+                arguments=["-entity","bug_robot","-b","-file", urdf_file,
+                ],
             ),
             Node(
                 package="robot_state_publisher",
